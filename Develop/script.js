@@ -1,7 +1,7 @@
 // declaring variables to store the locations of classes and ids from HTML
 var currentDay = $('#currentDay');
 var container = $('.container');
-currentDay.addClass("time-block");
+currentDay.addClass("description");
 
 var fontAwesome =
     $('head').append('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">');
@@ -60,8 +60,6 @@ var hours = [{
 // seting time using moment.js and writing it to the HTML
 var date = moment().format('MMMM Do YYYY');
 var currentHour = moment().format('HH');
-console.log(currentHour);
-console.log(date);
 currentDay.text(date);
 
 // dynamically changing CSS for HTML elements via jQuery
@@ -73,16 +71,13 @@ container.append(formDiv)
 //loops for hours and saves
 for (var i = 0; i < hours.length; i++) {
     // dynamically creating html elements using jQuery
-    var row = $('<row>'); // row element
+    row = $('<row>'); // row element
     inputDiv = $('<input>'); // input field to save events
     hourDiv = $('<div>'); // hour 
-    var buttonSave = $('<button>') // save button
-    var saveIcon = $('<span>');
-    console.log(saveIcon)
+    buttonSave = $('<button>') // save button
+    saveIcon = $('<span>');
     // adding text to element via jQuery
-    // hour = hourDiv.text(hours[i]);
     hourDiv.text(hours[i].time);
-
     buttonSave.attr("style", "font-size: 30px")
 
     // appending elements to document via jQuery
@@ -96,14 +91,13 @@ for (var i = 0; i < hours.length; i++) {
     //adding classes via jQuery
     row.addClass("row");
     inputDiv.addClass("col-md-10 description");
+    inputDiv.attr("id", "input-" + i)
     buttonSave.addClass("saveBtn :hover col-md-1");
-    hourDiv.addClass("col-md-1 hour time-block");
+    buttonSave.attr('id', 'hour-' + i)
+    hourDiv.addClass("col-md-1 hour");
     saveIcon.addClass("fa fa-floppy-o")
 
     // hourDiv.attr('id', "hour-" + i)
-    // buttonSave.addClass("col-md-1");
-    console.log(currentHour)
-    console.log(hours[i].hour)
     if (parseInt(currentHour) === hours[i].hour) {
         inputDiv.addClass("col-md-10 present")
     } else if (currentHour > hours[i].hour) {
@@ -113,6 +107,27 @@ for (var i = 0; i < hours.length; i++) {
     }
 }
 
+$('.saveBtn').on("click", function (event) {
+    event.preventDefault();
+    console.log('clicked');
+    userEntry = inputDiv.val();
+
+    var element = event.target;
+    for (var i = 0; i < hours.length; i++) {
+        // var userArr = []
+        localStorage.getItem("event-" + i)
+        var userInput = $('#input-' + i).val();
+        // userArr.push(userInput)
+        localStorage.setItem("event-" + i, userInput);
+        console.log(userInput)
+    }
+    // $('userEntry').each(function(i) {
+    //     var userInput = $(this).attr('')
+    // })
+
+    // var userEvent = inputDiv.text()
+    // console.log(userEvent)
+})
 // for (var j = 0; j < hours.length; j++) {
 //     // var hour = hourDiv.text(hours[j]);
 //     if (hours[j] < 12) {
