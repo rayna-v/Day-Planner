@@ -144,11 +144,14 @@ $('.saveBtn').on("click", function (event) {
 
     }
 })
+
 function renderLastEvents() {
     var event0 = localStorage.getItem("event-0");
     console.log(event0)
     var input0 = $('#input-0')
-    input0.textContent = event0
+
+    $('#input-0').attr("name", "input0");
+    input0.val(event0);
     // $('#input-1').text(event1)
 }
 
