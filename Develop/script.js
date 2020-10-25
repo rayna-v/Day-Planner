@@ -77,16 +77,11 @@ container.append(formDiv)
 //         return
 //     }
 // }
-$(document).ready(function () {
+// $(document).ready(function () {
 
-    $('input-2').text(localStorage.getItem("event-" + 2))
+renderLastEvents()
 
-    //     for (var i = 0; i < hours.length; i++) {
-    //         // userStoredEvents.push(userInput);
-    //         console.log(userstored)
-    //     }
-    // console.log(localStorage[i].userInput)
-})
+
 for (var i = 0; i < hours.length; i++) {
     // dynamically creating html elements using jQuery
     row = $('<row>'); // row element
@@ -149,6 +144,13 @@ $('.saveBtn').on("click", function (event) {
 
     }
 })
+function renderLastEvents() {
+    var event0 = localStorage.getItem("event-0");
+    console.log(event0)
+    var input0 = $('#input-0')
+    input0.textContent = event0
+    // $('#input-1').text(event1)
+}
 
 // // declaring variables to store the locations of classes and ids from HTML
 // var currentDay = $('#currentDay');
