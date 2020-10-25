@@ -2,7 +2,9 @@
 var currentDay = $('#currentDay');
 var container = $('.container');
 currentDay.addClass("description");
-
+var userInput
+var userEvents
+var userstored
 var fontAwesome =
     $('head').append('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">');
 
@@ -68,15 +70,32 @@ currentDay.attr("style", "font-size: 30px")
 // appending formDiv to document via jQuery
 container.append(formDiv)
 
-//loops for hours and saves
+// function renderEvents(i) {
+// for (var i = 0; i < hours.length; i++) {
+//     inputDiv[i].text(userEvents)
+//     if (!userEvents) {
+//         return
+//     }
+// }
+$(document).ready(function () {
+
+    $('input-2').text(localStorage.getItem("event-" + 2))
+
+    //     for (var i = 0; i < hours.length; i++) {
+    //         // userStoredEvents.push(userInput);
+    //         console.log(userstored)
+    //     }
+    // console.log(localStorage[i].userInput)
+})
 for (var i = 0; i < hours.length; i++) {
     // dynamically creating html elements using jQuery
     row = $('<row>'); // row element
     inputDiv = $('<input>'); // input field to save events
     hourDiv = $('<div>'); // hour 
     buttonSave = $('<button>') // save button
-    saveIcon = $('<span>');
-    // adding text to element via jQuery
+    saveIcon = $('<i>');
+
+    // adding text and attributes to elements via jQuery
     hourDiv.text(hours[i].time);
     buttonSave.attr("style", "font-size: 30px")
 
@@ -90,14 +109,19 @@ for (var i = 0; i < hours.length; i++) {
 
     //adding classes via jQuery
     row.addClass("row");
-    inputDiv.addClass("col-md-10 description");
-    inputDiv.attr("id", "input-" + i)
+    inputDiv.addClass("col-md-10 ");
+
     buttonSave.addClass("saveBtn :hover col-md-1");
-    buttonSave.attr('id', 'hour-' + i)
     hourDiv.addClass("col-md-1 hour");
     saveIcon.addClass("fa fa-floppy-o")
 
+    //adding ids via jQuery
+    inputDiv.attr("id", "input-" + i)
+    buttonSave.attr('id', 'hour-' + i)
+
     // hourDiv.attr('id', "hour-" + i)
+
+    // conditional to compare current hour with the planner hour and adds classes based on result
     if (parseInt(currentHour) === hours[i].hour) {
         inputDiv.addClass("col-md-10 present")
     } else if (currentHour > hours[i].hour) {
@@ -109,37 +133,22 @@ for (var i = 0; i < hours.length; i++) {
 
 $('.saveBtn').on("click", function (event) {
     event.preventDefault();
-    console.log('clicked');
-    userEntry = inputDiv.val();
+    // console.log('clicked');
+    // userEntry = inputDiv.val();
 
-    var element = event.target;
+    // var element = event.target;
     for (var i = 0; i < hours.length; i++) {
         // var userArr = []
-        localStorage.getItem("event-" + i)
-        var userInput = $('#input-' + i).val();
+        userEvents = localStorage.getItem("event-" + i)
+        // console.log(userEvents)
+        userInput = $('#input-' + i).val();
         // userArr.push(userInput)
         localStorage.setItem("event-" + i, userInput);
+        // console.log(userInput)
         console.log(userInput)
+
     }
-    // $('userEntry').each(function(i) {
-    //     var userInput = $(this).attr('')
-    // })
-
-    // var userEvent = inputDiv.text()
-    // console.log(userEvent)
 })
-// for (var j = 0; j < hours.length; j++) {
-//     // var hour = hourDiv.text(hours[j]);
-//     if (hours[j] < 12) {
-//         hourDiv.text(hours[j] + ":00 A.M.")
-//         console.log(hours[j])
-//     }
-// }
-
-
-
-
-
 
 // // declaring variables to store the locations of classes and ids from HTML
 // var currentDay = $('#currentDay');
