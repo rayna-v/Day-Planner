@@ -42,21 +42,6 @@ var hours = [{
 }, {
     hour: 17,
     time: "5:00 P.M."
-}, {
-    hour: 18,
-    time: "6:00 P.M."
-}, {
-    hour: 19,
-    time: "7:00 P.M."
-}, {
-    hour: 20,
-    time: "8:00 P.M."
-}, {
-    hour: 21,
-    time: "9:00 P.M."
-}, {
-    hour: 22,
-    time: "10:00 P.M."
 }]
 
 // seting time using moment.js and writing it to the HTML
@@ -70,53 +55,38 @@ currentDay.attr("style", "font-size: 30px")
 // appending formDiv to document via jQuery
 container.append(formDiv)
 
-// function renderEvents(i) {
-// for (var i = 0; i < hours.length; i++) {
-//     inputDiv[i].text(userEvents)
-//     if (!userEvents) {
-//         return
-//     }
-// }
-// $(document).ready(function () {
-
-renderLastEvents()
-
-
 for (var i = 0; i < hours.length; i++) {
     // dynamically creating html elements using jQuery
     row = $('<row>'); // row element
     inputDiv = $('<input>'); // input field to save events
     hourDiv = $('<div>'); // hour 
-    buttonSave = $('<button>') // save button
-    saveIcon = $('<i>');
+    buttonSave = $('<button>'); // save button
+    saveIcon = $('<i>'); // save icon
 
     // adding text and attributes to elements via jQuery
     hourDiv.text(hours[i].time);
-    buttonSave.attr("style", "font-size: 30px")
+    buttonSave.attr("style", "font-size: 30px");
+    $('.past').attr("style", "color: black")
 
     // appending elements to document via jQuery
-    formDiv.append(row)
-    container.append(formDiv)
+    formDiv.append(row);
     row.append(hourDiv);
     row.append(inputDiv);
     row.append(buttonSave);
-    buttonSave.append(saveIcon)
+    buttonSave.append(saveIcon);
 
     //adding classes via jQuery
     row.addClass("row");
-    inputDiv.addClass("col-md-10 ");
-
-    buttonSave.addClass("saveBtn :hover col-md-1");
     hourDiv.addClass("col-md-1 hour");
+    inputDiv.addClass("col-md-10 ");
+    buttonSave.addClass("saveBtn :hover col-md-1");
     saveIcon.addClass("fa fa-floppy-o")
 
-    //adding ids via jQuery
+    //adding IDs via jQuery
     inputDiv.attr("id", "input-" + i)
     buttonSave.attr('id', 'hour-' + i)
 
-    // hourDiv.attr('id', "hour-" + i)
-
-    // conditional to compare current hour with the planner hour and adds classes based on result
+    // conditional to compare current hour with the planner hour and adds classes to color-code based on result
     if (parseInt(currentHour) === hours[i].hour) {
         inputDiv.addClass("col-md-10 present")
     } else if (currentHour > hours[i].hour) {
@@ -126,117 +96,25 @@ for (var i = 0; i < hours.length; i++) {
     }
 }
 
+// event handler for save buttons to store input values in Local Storage
 $('.saveBtn').on("click", function (event) {
     event.preventDefault();
-    // console.log('clicked');
-    // userEntry = inputDiv.val();
 
-    // var element = event.target;
     for (var i = 0; i < hours.length; i++) {
-        // var userArr = []
         userEvents = localStorage.getItem("event-" + i)
-        // console.log(userEvents)
         userInput = $('#input-' + i).val();
-        // userArr.push(userInput)
         localStorage.setItem("event-" + i, userInput);
-        // console.log(userInput)
-        console.log(userInput)
-
     }
+
 })
 
+// function to print the stored event values from local storage to the day planner
 function renderLastEvents() {
-    var event0 = localStorage.getItem("event-0");
-    console.log(event0)
-    var input0 = $('#input-0')
 
-    $('#input-0').attr("name", "input0");
-    input0.val(event0);
-    // $('#input-1').text(event1)
+    for (var i = 0; i < hours.length; i++) {
+        var event = localStorage.getItem("event-" + i);
+        var input = $('#input-' + i)
+        input.val(event)
+    }
 }
-
-// // declaring variables to store the locations of classes and ids from HTML
-// var currentDay = $('#currentDay');
-// var container = $('.container');
-// currentDay.addClass("time-block");
-// //dynamically creating HTML elements to manipulate via jQuery 
-// var formDiv = $('<form>');
-
-
-// //array for hours of day
-// var hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-
-// // seting time using moment.js and writing it to the HTML
-// var date = moment().format('MMMM Do YYYY');
-// var currentHour = moment().format('HH');
-// console.log(currentHour);
-// console.log(date);
-// currentDay.text(date);
-
-// // dynamically changing CSS for HTML elements via jQuery
-// currentDay.attr("style", "font-size: 30px")
-
-
-// container.append(formDiv)
-
-// //loops for hours and saves
-// for (var i = 0; i < hours.length; i++) {
-//     // dynamically creating html elements using jQuery
-//     var row = $('<row>'); // row element
-//     inputDiv = $('<input>'); // input field to save events
-//     hourDiv = $('<div>'); // hour 
-//     var buttonSave = $('<button>') // save button
-
-//     // adding text to element via jQuery
-//     // hour = hourDiv.text(hours[i]);
-//     hour = hours[i];
-
-//     buttonSave.text("Save")
-
-//     // appending elements to document via jQuery
-//     formDiv.append(row)
-//     container.append(formDiv)
-//     row.append(hourDiv);
-//     row.append(inputDiv);
-//     row.append(buttonSave)
-
-//     //adding classes via jQuery
-//     row.addClass("row");
-//     inputDiv.addClass("col-md-10");
-//     buttonSave.addClass("saveBtn");
-//     hourDiv.addClass("col-md-1");
-//     hourDiv.attr('id', "hour-" + i)
-//     buttonSave.addClass("col-md-1");
-//     console.log(currentHour)
-//     if (currentHour === hour) {
-//         inputDiv.addClass("col-md-10 present")
-//     } else if (currentHour < hour) {
-//         inputDiv.addClass("col-md-10 past")
-//     } else {
-//         inputDiv.addClass("col-md-10 future")
-//     }
-// }
-
-// for (var j = 0; j < hours.length; j++) {
-//     // var hour = hourDiv.text(hours[j]);
-//     if (hours[j] < 12) {
-//         hourDiv.text(hours[j] + ":00 A.M.")
-//         console.log(hours[j])
-//     }
-// }
-// // if (currentHour === hour) {
-// //     inputDiv.addClass("col-md-10 present")
-// //     console.log(currentHour)
-// //     console.log(hour)
-// // } else if (currentHour < hour) {
-// //     inputDiv.addClass("col-md-10 past")
-// // } else if (hour < 12) {
-// //     hourDiv.text(hour + ":00 A.M.")
-// //     // console.log(hours[i] + ":00 A.M.")
-// // } else if (hour > 12) {
-// //     hourDiv.text(hour - 12 + ":00 P.M.")
-// // } else if (hour === 12) {
-// //     hourDiv.text(hour + ":00 P.M.")
-// // } else {
-// //     inputDiv.addClass("col-md-10 future")
-// // }
+renderLastEvents()
