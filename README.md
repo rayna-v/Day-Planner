@@ -2,15 +2,19 @@
 
 # 05 Third-Party APIs: Work Day Scheduler
 
-## Your Task
+## Motivation
+This task allowed me to become much more comfortable with jQuery, JavaScript, and local storage. I wanted to approach this task with clear goals in mind that would allow me to focus on functionality and work to have purposeful and concise code. 
 
-Create a simple calendar application that allows a user to save events for each hour of the day by modifying starter code. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
+## The Task
 
-You'll need to use the [Moment.js](https://momentjs.com/) library to work with date and time. Be sure to read the documentation carefully and concentrate on using Moment.js in the browser.
+I was tasked with creating a simple calendar application that allows users to save events in a day planner for each hour of the day. I was given HTML and CSS starter code to modify and update dynamically through the power of jQuery.
+
+I was also introduced to the [Moment.js](https://momentjs.com/) library to have the current date displayed at the top of the page and the time to color-code the planner according to past, present, and future time blocks.
 
 
 ## User Story
 
+I was given the following 'User Story':
 ```
 AS AN employee with a busy schedule
 I WANT to add important events to a daily planner
@@ -20,6 +24,7 @@ SO THAT I can manage my time effectively
 
 ## Acceptance Criteria
 
+This is the 'Acceptance Criteria' that was provided:
 ```
 GIVEN I am using a daily planner to create a schedule
 WHEN I open the planner
@@ -39,10 +44,17 @@ THEN the saved events persist
 
 ## Mock-Up
 
-The following animation demonstrates the application functionality:
+The following animation demonstrates my applications funcionality:
 
-![day planner demo](./Assets/05-third-party-apis-homework-demo.gif)
+![day planner demo](./Assets/Day-Planner.gif)
 
+## Deployment
+
+GitHub repositories URL: https://github.com/rayna-v/Day-Planner
+
+Live URL: https://rayna-v.github.io/Day-Planner/
+
+***
 
 ## Grading Requirements
 
