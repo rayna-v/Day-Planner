@@ -87,9 +87,9 @@ for (var i = 0; i < hours.length; i++) {
     buttonSave.attr('id', 'hour-' + i)
 
     // conditional to compare current hour with the planner hour and adds classes to color-code based on result
-    if (parseInt(currentHour) === hours[i].hour + 3) {
+    if (parseInt(currentHour) === hours[i].hour) {
         inputDiv.addClass("col-md-10 present")
-    } else if (currentHour > hours[i].hour + 3) {
+    } else if (currentHour > hours[i].hour) {
         inputDiv.addClass("col-md-10 past")
     } else {
         inputDiv.addClass("col-md-10 future")
